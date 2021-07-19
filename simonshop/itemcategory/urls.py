@@ -16,8 +16,10 @@ Including another URLconf
 # from django.contrib import admin
 from django.urls import path, include
 
+from itemcategory import views
+
 urlpatterns = [
     #    path('admin/', admin.site.urls),
-    path('api/goods/',include('home.urls')),
-    path('api/goods/',include('itemcategory.urls')),
+    path('foodtype/', views.FoodTypeView.as_view()),
+    path('market/', views.GoodListView.as_view()),
 ]
