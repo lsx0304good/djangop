@@ -25,7 +25,7 @@ SECRET_KEY = 'eu0=&=mgm-+2c7z5d0crt4$@_0qb*1_)%^z4cfm0pbyiv62c=!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -36,7 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'shop.apps.ShopConfig',
+    'home',
+    'itemcategory',
+    'myitems',
+    'shoppingcart',
     'rest_framework',
 ]
 
@@ -55,7 +58,7 @@ ROOT_URLCONF = 'simonshop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': []
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -85,7 +88,7 @@ WSGI_APPLICATION = 'simonshop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'demo2',
+        'NAME': 'eshop',
         'USER': 'root',
         'PASSWORD': 'lisixiang945',
         'HOST': '127.0.0.1',
