@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'myitems',
     'shoppingcart',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    'orders',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -161,7 +163,21 @@ CORS_ALLOW_HEADERS = (
 )
 
 REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
     'DEFAULT_RENDERER_CLASSES': (
         'utils.renders.CustomJsonRenderer',
-    )
+    ),
 }
+
+
+# 订单状态
+# 已下订单未支付
+ORDER_STATUS_NOT_PAY = 0
+# 已下单已支付
+ORDER_STATUS_PAY = 1
+# 已付款未发货
+ORDER_STATUS_NOT_SEND = 2
+# 已发货未收货
+ORDER_STATUS_NOT_RECEIVE = 3

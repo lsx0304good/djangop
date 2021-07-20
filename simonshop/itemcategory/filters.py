@@ -10,7 +10,7 @@ class GoodsFilter(filters.FilterSet):
 
     class Meta:
         model = AxfGoods
-        fields = ['categoryid', 'childcid']
+        fields = ['categoryid']
 
     def filter_child_type(self, queryset, name, value):  # name是字段名，value是传过来的值
         value = int(value)
@@ -21,9 +21,7 @@ class GoodsFilter(filters.FilterSet):
 
     def get_order_rule(self, queryset, name, value):
         value = int(value)
-        if value == 0:  # 不排序
-            return queryset
-        elif value == 1:  # 价格升序
+        if value == 1:  # 价格升序
             return queryset.order_by("price")
         elif value == 2:  # 价格降序
             return queryset.order_by("-price")
@@ -31,3 +29,4 @@ class GoodsFilter(filters.FilterSet):
             return queryset.order_by("productnum")
         elif value == 4:
             return queryset.order_by("-productnum")
+        return queryset

@@ -9,8 +9,8 @@ from django.db import models
 
 
 class AxfCart(models.Model):
-    c_goods_num = models.IntegerField()
-    c_is_select = models.IntegerField()
+    c_goods_num = models.IntegerField(default=1)
+    c_is_select = models.IntegerField(default=1)
     c_goods = models.ForeignKey('AxfGoods', models.DO_NOTHING, blank=True, null=True)
     c_user = models.ForeignKey('AxfUser', models.DO_NOTHING, blank=True, null=True)
 
@@ -112,8 +112,8 @@ class AxfNav(models.Model):
 
 class AxfOrder(models.Model):
     o_price = models.FloatField()
-    o_time = models.DateTimeField()
-    o_status = models.IntegerField()
+    o_time = models.DateTimeField(auto_now=True)
+    o_status = models.IntegerField(default=0)
     o_user = models.ForeignKey('AxfUser', models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
@@ -124,7 +124,7 @@ class AxfOrder(models.Model):
 class AxfOrdergoods(models.Model):
     o_goods_num = models.IntegerField()
     o_goods = models.ForeignKey(AxfGoods, models.DO_NOTHING, blank=True, null=True)
-    o_order = models.ForeignKey(AxfOrder, models.DO_NOTHING, blank=True, null=True)
+    o_order = models.ForeignKey(AxfOrder, models.DO_NOTHING, blank=True, null=True, related_name="goods")
 
     class Meta:
         managed = False
